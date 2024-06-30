@@ -1,4 +1,3 @@
-// Fetch the status data from a server or API
 fetch("/ztx/locations")
   .then(response => response.json())
   .then(locations => {
