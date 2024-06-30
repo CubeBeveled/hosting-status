@@ -1,0 +1,25 @@
+// Fetch the status data from a server or API
+fetch("/ztx/locations")
+  .then(response => response.json())
+  .then(locations => {
+    locations = locations.locations;
+
+    // Display the status information
+    const statusContainer = document.getElementById("page");
+
+    locations.forEach(data => {
+      const statusElement = document.createElement("div");
+      statusElement.classList.add("node");
+
+      statusElement.innerHTML = `
+        <img src="${data.flag}" class="flag">
+        <h3 class="node-text">${data.name}</h3>
+        <p class="node-text">Servers: ${data.servers}/${data.maxservers}</p>
+      `;
+
+      statusContainer.appendChild(statusElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching status:', error);
+  });

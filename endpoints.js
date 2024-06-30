@@ -1,58 +1,26 @@
 const express = require("express");
+const axios = require("axios");
 const path = require("path");
 const api = express();
-const axios = require("axios");
-const net = require("net");
 
-let status = {
-  ulb1: null,
-  lax3: null,
-  lax2: null,
-  lax1: null,
-  hel1: null,
-  tky1: null
-}
+const port = 3000;
 
 api.use(express.json());
 
 api.get("/", (req, res) => res.sendFile(path.join(__dirname, "ztx.html")));
 
 api.get("/styles.css", (req, res) => res.sendFile(path.join(__dirname, "styles.css")));
+api.get("/ztx.js", (req, res) => res.sendFile(path.join(__dirname, "ztx.js")));
 
 api.get("/ztx", (req, res) => {
-  let status = {
-
-  }
+  res.sendFile(path.join(__dirname, "ztx.html"));
 });
 
-const port = 3000;
+api.get("/ztx/locations", async (req, res) => {
+  const data = await axios.get("https://my.ztx.gd/api/locations")
+  res.json(data.data)
+});
+
 api.listen(port, () => console.log(`Server ready on port ${port}.`));
-
-function checkNode(host, port, timeout) {
-  return new Promise((resolve, reject) => {
-    const socket = new net.Socket();
-
-    // Set the timeout
-    socket.setTimeout(timeout);
-
-    // Handle connection timeout
-    socket.on("timeout", () => {
-      socket.destroy();
-      resolve(false);
-    });
-
-    // Handle connection errors
-    socket.on("error", (err) => {
-      socket.destroy();
-      resolve(false);
-    });
-
-    // Handle successful connection
-    socket.connect(port, host, () => {
-      socket.end();
-      resolve(true);
-    });
-  });
-}
 
 module.exports = api;
