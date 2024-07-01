@@ -3,7 +3,6 @@ const axios = require("axios");
 const api = express();
 
 api.use(express.json());
-api.use(express.static("public"))
 
 api.get("/", (req, res) => res.sendFile("index.html"));
 
