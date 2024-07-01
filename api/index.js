@@ -12,7 +12,7 @@ app.get("/api/ztx/locations", async (req, res) => {
   res.json(data.data)
 });
 
-app.get("/api/slice/locations", async (req, res) => {
+app.get("/api/slice", async (req, res) => {
   const data = await axios.get("https://dash.slicehosting.tech/api/locations")
   res.json(data.data)
 });
