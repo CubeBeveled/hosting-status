@@ -1,5 +1,4 @@
 {
-  "routes": [
-    { "src": "/(.*)", "dest": "endpoints.js" }
-  ]
+  "version": 2,
+  "routes": []
 }
