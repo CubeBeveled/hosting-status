@@ -1,24 +1,24 @@
 const express = require("express");
 const axios = require("axios");
-const app = express();
+const api = express();
 
-app.use(express.json());
-app.use(express.static("public"))
+api.use(express.json());
+api.use(express.static("public"))
 
-app.get("/", (req, res) => res.redirect("/index.html"));
+api.get("/", (req, res) => res.sendFile("index.html"));
 
-app.get("/api/ztx/locations", async (req, res) => {
+api.get("/api/ztx/locations", async (req, res) => {
   const data = await axios.get("https://my.ztx.gd/api/locations")
   res.json(data.data)
 });
 
-app.get("/slice", async (req, res) => {
+api.get("/slice", async (req, res) => {
   const data = await axios.get("https://dash.slicehosting.tech/api/locations")
   res.json(data.data)
 });
 
-app.listen(3000, () => console.log(`Server ready on port 3000.`));
+api.listen(3000, () => console.log(`Server ready on port 3000.`));
 
 console.log("API loaded")
 
-module.exports = app;
+module.exports = api;
