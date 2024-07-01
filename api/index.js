@@ -7,7 +7,7 @@ api.use(express.static("public"))
 
 api.get("/", (req, res) => res.sendFile("index.html"));
 
-api.get("/api/ztx/locations", async (req, res) => {
+api.get("/ztx/locations", async (req, res) => {
   const data = await axios.get("https://my.ztx.gd/api/locations")
   res.json(data.data)
 });
