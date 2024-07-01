@@ -24,4 +24,13 @@ fetch("/ztx/locations")
   })
   .catch(error => {
     console.error("Error fetching status:", error);
+    const statusElement = document.createElement("div");
+    statusElement.classList.add("node");
+
+    statusElement.innerHTML = `
+      An error occurred while fetching status.
+      ${error}
+    `;
+
+    statusContainer.appendChild(statusElement);
   });
