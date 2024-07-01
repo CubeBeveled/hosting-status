@@ -24,4 +24,5 @@ app.get("/ztx/locations", async (req, res) => {
 
 app.listen(port, () => console.log(`Server ready on port ${port}.`));
 
+console.log("API loaded")
 module.exports = app;
