@@ -1,23 +1,9 @@
 const express = require("express");
-const axios = require("axios");
-const api = express();
+const app = express();
+const port = 3000;
 
-api.use(express.json());
+app.get("/test", (req, res) => res.send("Express on Vercel"));
 
-api.get("/", (req, res) => res.sendFile("index.html"));
+app.listen(port, () => console.log(`Server ready on port ${port}.`));
 
-api.get("/ztx/locations", async (req, res) => {
-  const data = await axios.get("https://my.ztx.gd/api/locations")
-  res.json(data.data)
-});
-
-api.get("/slice", async (req, res) => {
-  const data = await axios.get("https://dash.slicehosting.tech/api/locations")
-  res.json(data.data)
-});
-
-api.listen(3000, () => console.log(`Server ready on port 3000.`));
-
-console.log("API loaded")
-
-module.exports = api;
+module.exports = app;
