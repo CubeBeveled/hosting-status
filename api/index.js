@@ -14,6 +14,11 @@ api.get("/ztx/locations", async (req, res) => {
   res.json(data.data)
 });
 
+api.get("/slice/locations", async (req, res) => {
+  const data = await axios.get("https://dash.slicehosting.tech/api/locations")
+  res.json(data.data)
+});
+
 api.listen(port, () => console.log(`Server ready on port ${port}.`));
 
 console.log("API loaded")
