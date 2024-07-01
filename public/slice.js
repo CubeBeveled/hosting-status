@@ -1,11 +1,10 @@
-fetch("/ztx/nodes")
+fetch("/slice/nodes")
   .then(response => {
-    console.log(response);
-    //response.json()
+    console.log(response)
+    response.json()
   })
   .then(locations => {
     locations = locations.locations;
-    console.log(locations)
 
     // Display the status information
     const statusContainer = document.getElementById("page");
