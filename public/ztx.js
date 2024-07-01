@@ -23,7 +23,6 @@ fetch("/ztx/locations")
     });
   })
   .catch(error => {
-    console.error("Error fetching status:", error);
     const statusElement = document.createElement("div");
     statusElement.classList.add("node");
 
@@ -33,4 +32,6 @@ fetch("/ztx/locations")
     `;
 
     statusContainer.appendChild(statusElement);
+    
+    console.error("Error fetching status:", error);
   });
