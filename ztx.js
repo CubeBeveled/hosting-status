@@ -1,5 +1,8 @@
 fetch("/ztx/locations")
-  .then(response => response.json())
+  .then(response => {
+    console.log(response);
+    response.json()
+  })
   .then(locations => {
     locations = locations.locations;
 
@@ -20,5 +23,5 @@ fetch("/ztx/locations")
     });
   })
   .catch(error => {
-    console.error('Error fetching status:', error);
+    console.error("Error fetching status:", error);
   });
