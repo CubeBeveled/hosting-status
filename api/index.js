@@ -7,7 +7,7 @@ const port = 3000;
 
 api.use(express.json());
 
-api.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
+api.get("/", (req, res) => res.redirect("/index.html"));
 
 api.get("/ztx/locations", async (req, res) => {
   const data = await axios.get("https://my.ztx.gd/api/locations")
